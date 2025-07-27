@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creating a Game Bot (Part 2)</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Creating a Game Bot using PyAutoGUI, OpenCV, and Pytesseract — Part 2</h1>
+<div class="log-date">April–June 2024</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-automation.html"><span>#automation</span></a><a href="../tags/tag-python.html"><span>#python</span></a><a href="../tags/tag-pyautogui.html"><span>#pyautogui</span></a></div>
+</p>
+<div class="log-content">
+<p>After finishing my fishing bot, I wanted to automate something more complicated.</p>
+<p>I discovered that more dungeons had been added to the game. A dungeon is like a mission or quest consisting of several tasks, usually ending with defeating a dungeon boss. The tasks were generally simple and repetitive—great candidates for automation.</p>
+<p>I ran a few dungeons manually first. I wanted to understand how they worked overall: did tasks appear in the same order? Did monsters always spawn in the same places? I needed to evaluate their automation potential. After several runs, I settled on a hell-themed dungeon as my target.</p>
+<p>I began coding. I took screenshots of the monster names (I discovered that the font color was unique for each category: bosses, monsters, or metin stones). I used these screenshots with PyAutoGUI to locate them on screen. I also set up automated clicks for using potions. After some effort, I got my bot loop running.</p>
+<p>At the start, I watched the bot closely—observing how my character behaved, checking whether it looked suspicious or “bot-like.” After a while, I noticed some variation in monster and stone spawn positions. After a few hours, my character started clicking in the wrong places because the stones sometimes spawned farther or closer than expected.</p>
+<p>To address this, I added a function that clicked a second time on the stone. If the character was already attacking, nothing happened. But if it wasn’t attacking, that second click would correct its position.</p>
+<p>That was essentially it—the same core logic as the fishing bot (locate images, automate mouse and keyboard input), but the dungeon bot was more advanced.</p>
+<p>I ran the bot for a while and then noticed two important issues.</p>
+<p>First, running dungeons wasn’t very profitable for me. Most players used around six characters to farm six dungeons simultaneously. I had only one character, and my bot could only handle one dungeon at a time. I couldn’t scale easily for two reasons: I didn’t have a powerful computer (just a Lenovo ThinkPad T460 with an Intel i5-6600U that could run maybe two or three instances of the game), and even if I upgraded my hardware, my approach wasn’t scalable. I’d need to set up virtual machines for each instance.</p>
+<p>Second, because dungeons were so repetitive, many players had started using bots—and admins knew this. They manually checked players by sending private messages, asking casual questions or questions about in-game events. I didn’t know this at first. Eventually, I got checked, didn’t respond in time, and got banned.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>

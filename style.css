@@ -1,0 +1,228 @@
+@font-face {
+  font-family: 'Conthrax';
+  src: url('./fonts/Conthrax-SemiBold.otf') format('opentype');
+  font-display: swap;
+}
+
+body {
+  background-color: black;
+  margin: 0;
+  font-family: 'Conthrax', sans-serif;
+  color: #66ffff;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  border: 1px solid #66ffff;
+  margin: 20px 0;
+}
+
+.about-text {
+  font-family: sans-serif;
+  color: #66ffff;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.grid-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('tron-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.gear-entry {
+  font-family: sans-serif;
+  color: #66ffff;
+  border: 2px solid #66ffff;
+  padding: 20px;
+  box-shadow: 0 0 12px #66ffff inset;
+  background-color: rgba(0,0,0,0.6);
+  margin-bottom: 40px;
+}
+
+.highlight {
+  color: #66ffff;
+  font-weight: bold;
+}
+
+.hud-frame {
+  border: 2px solid #66ffff;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 1200px;
+  box-shadow: 0 0 16px #66ffff;
+  position: relative;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column; /* changed from row */
+}
+
+.nav-panel {
+  width: 100%; /* full width */
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row; /* changed from column */
+  justify-content: center;
+  gap: 20px;
+  border-bottom: 2px solid #66ffff;
+}
+
+.nav-item {
+  border: 2px solid #66ffff;
+  padding: 10px;
+  text-align: center;
+  color: #66ffff;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 0 8px #66ffff;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 30%, 100% 100%, 0% 100%, 0% 30%);
+}
+
+.nav-item:hover {
+  background-color: #66ffff;
+  color: black;
+  box-shadow: 0 0 16px #66ffff;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px 40px;
+  border-left: none; /* removed */
+  border-top: 2px solid #66ffff; /* optional: border below nav */
+}
+
+.site-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #66ffff;
+  font-family: 'Conthrax', sans-serif;
+  text-shadow: 0 0 2px #00ffff, 0 0 5px rgba(0, 255, 255, 0.4);
+}
+
+.log-entry {
+  border: 2px solid #66ffff;
+  padding: 20px;
+  box-shadow: 0 0 12px #66ffff inset;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.log-tags a {
+  display: inline-block;
+  margin-right: 6px;
+  text-decoration: none;
+}
+
+.log-tags span {
+  background: #003333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 4px;
+  color: #66ffff;
+  display: inline-block;
+}
+
+.log-tags span:hover {
+  background-color: #66ffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 4px;
+  color: black;
+  display: inline-block;
+}
+
+.log-title {
+  font-family: 'Conthrax', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #66ffff;
+}
+
+.log-title a {
+  font-family: 'Conthrax', sans-serif !important;
+  color: #66ffff;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.log-title a:hover {
+  background-color: #66ffff;
+  color: black !important; /* force override inline style */
+  box-shadow: 0 0 16px #66ffff;
+  padding: 8px 12px;
+  border: 2px solid #66ffff;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 30%, 100% 100%, 0% 100%, 0% 30%);
+  display: inline-block;
+}
+
+.log-date {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: #66ffff;
+}
+
+.log-content {
+  font-family: sans-serif;
+  color: #66ffff;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+/* 🌟 Improved media query for small screens */
+@media (max-width: 768px) {
+  .hud-frame {
+    flex-direction: column;
+  }
+
+  .nav-panel {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-right: none;
+    border-bottom: 2px solid #66ffff;
+    gap: 10px;
+  }
+
+  .main-content {
+    border-left: none;
+    border-top: 2px solid #66ffff;
+    padding: 20px;
+  }
+
+  .nav-item {
+    clip-path: none;
+    border-radius: 6px;
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+
+  .site-title {
+    font-size: 1.8rem;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 1.4rem;
+  }
+
+  .log-title {
+    font-size: 0.7rem;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}

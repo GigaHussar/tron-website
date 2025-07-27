@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pi-Hole + Self-Hosted Web on Pi Zero 2 W</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Pi-Hole + Self-Hosted Web on Pi Zero 2 W</h1>
+<div class="log-date">April 2025</div>
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-network.html"><span>#network</span></a></div>
+<div class="log-content"><p>This was a quiet but satisfying project. Not flashy, no bots or AI this time — just practical infrastructure at home.</p><p>I wanted to combine two things: a Pi-Hole network-wide ad blocker and a self-hosted personal website. Both running off a single Raspberry Pi Zero 2 W. It’s cheap, small, and sips power. Seemed like the perfect candidate for something that’s meant to stay on 24/7.</p><p>I flashed a high-endurance SD card — the type made for continuous operation — and set up the Pi with an Ethernet adapter via micro-USB. Wi-Fi would’ve been easier, but I didn’t want to risk instability.</p><p>Setting up Pi-Hole was mostly painless. Installed it via the official script and pointed my router’s DNS to the Pi’s local IP. Ads vanished instantly across all devices. Well — most of them. I noticed a lot of Google ads slipping through. So I added a few aggressive blocklists and manually blacklisted the domains that slipped past.</p><p>That was step one. Step two: turn the same Pi into a web server for my personal site. Resource-wise, the site is featherlight. I knew the Pi could handle it easily, and it just made sense to combine both roles into one always-on node.</p><p>I installed Nginx, set it to listen on a custom port, and configured the Pi to use a static IP. Then I set up port forwarding (NAT) on my router to expose the Nginx port to the internet.</p><p>Except… it didn’t work.</p><p>I could open the site from inside my network — via the Pi’s local IP, even through my desktop and the router’s address. But accessing it from my public IP? Nothing.</p><p>I retraced every step. Verified the NAT rule. Tried different ports. Restarted everything. Still nothing. Then I remembered something: my router doesn’t actually connect directly to the internet — it’s plugged into another device I had set up as an “access point.”</p><p>That was the missing piece. Except, it turns out that device wasn’t just an access point — it was acting as a router in disguise.</p><p>I had unknowingly created a double NAT situation: one router behind another. And that breaks public port forwarding unless both routers are configured to cooperate. I tried enabling NAT and port forwarding on the outer device, but it didn’t help. Forums confirmed what I was running into — unless the outer device is in bridge mode or the inner one is placed in a DMZ, public IP routing won’t behave properly.</p><p><em>DMZ, or Demilitarized Zone, is a router setting that exposes one internal device (like your Pi) directly to the internet. It bypasses firewall and NAT restrictions from the outer router, effectively treating that device as if it’s sitting on the public internet — which allows things like port forwarding to work through double NAT. It’s handy, but comes with security risks since the device is no longer protected by the router’s firewall.</em></p><p>So now I have options. I can either restructure my network — maybe put the main router into bridge mode or flatten everything into one device — or just accept that this is a LAN-only server for now.</p><p>Still — Pi-hole works beautifully. The site is accessible from inside the network. And the little Pi is pulling double-duty like a champ.</p></div>
+</div>
+</main>
+</div>
+</body>
+</html>

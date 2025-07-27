@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Building a Telegram Notifier for Rental Listings</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Building a Telegram Notifier for Rental Listings</h1>
+<div class="log-date">July 2025</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-automation.html"><span>#automation</span></a><a href="../tags/tag-python.html"><span>#python</span></a><a href="../tags/tag-web.html"><span>#web</span></a></div>
+</p>
+<div class="log-content">
+<p>It started as a casual observation from friends: the best rental deals disappear fast. You message a landlord minutes after the listing goes up—or you don’t get a reply at all. That tiny time window was frustrating, but it also sounded like a great problem for automation.</p>
+<p>The idea was simple: scan rental sites, look for new listings that match your filters, and shoot a Telegram message as soon as something pops up. I called it a "notifier" but it became more like a radar.</p>
+<p>The code lives here: <a href="https://github.com/GigaHussar/telegram-notifier" target="_blank">telegram-notifier on GitHub</a>.</p>
+<p>I used <code>requests</code> and <code>BeautifulSoup</code> to scrape listings from the target site. For now, it's tuned to work with a specific Polish housing portal. Listings there have a consistent structure and pagination, which makes scraping straightforward once you know what you’re looking for. I parsed titles, prices, locations, and links, filtering based on keywords like "2 pokoje" or "garaż w cenie."</p>
+<p>Every 60 seconds, the script polls the site. It keeps track of previously seen URLs in a local JSON file. If something new appears, it sends a formatted message through a Telegram bot to a private chat.</p>
+<p>The most interesting part wasn’t the scraper or even the Telegram integration (that’s just a bot token and an HTTP POST away). What made it effective was the ultra-low latency. You get notified within seconds of a listing going live. And if you’re fast to message the landlord, you get first dibs. It worked. My friends actually found flats through this.</p>
+<p>There’s room to evolve it—add database support, scheduling, deduplication heuristics, maybe even image-based filtering—but for now, it's a tool that works. Built for one purpose. Does its job. And maybe helps people find homes a little faster.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>

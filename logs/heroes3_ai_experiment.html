@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>From Figurines to Tools: My 3D Printing Journey</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Experimenting with AI in Heroes 3 Battles</h1>
+<div class="log-date">July 2025</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-ai.html"><span>#ai</span></a><a href="../tags/tag-python.html"><span>#python</span></a><a href="../tags/tag-automation.html"><span>#automation</span></a></div>
+</p>
+<div class="log-content"><p>For years, I’ve loved playing Heroes of Might and Magic III. It’s one of those games where the strategy, randomness, and battle animations still hold up decades later. But I recently found myself wondering: what would it look like if a machine tried to make the decisions instead?</p><p>That’s when I began experimenting with VCMI—the open-source engine for Heroes 3. While VCMI is extensible, it didn’t originally support exporting battle logs or actions in a structured way. So I built that myself: I hooked into the battle logic and wrote custom code to export full battle states to JSON after every turn.</p><p>Each export included hex positions, stack data, initiative, terrain, hero mana, spellbooks, morale, and the full list of legal actions for the currently active unit. This created a rich dataset for analysis and decision-making.</p><p>Then I wrote a command listener in VCMI itself. It opens a port and waits for external input—essentially letting me feed commands into the battle interface from an outside agent. Once that worked, I had a two-way loop: game states go out, actions come in.</p><p>The final piece was the AI itself. I built a Python-based agent powered by a language model (via ollama or claude API) that read the JSON snapshots, chose an action, and sent it back through the port. Every turn, the game would pause, wait for the model’s decision, then continue.</p><p>Watching the model play through Heroes 3 battles felt surreal. Sometimes it made decent tactical choices—targeting resurrection, focusing high-value stacks, or deciding when to defend. Other times, it made funny mistakes. But that unpredictability made it feel almost human.</p><p>There’s something fascinating about seeing AI try to decide between melee attacks and spellcasting, or when to move forward vs wait. Heroes 3 isn’t known for its brilliant AI, so watching a modern model play the game was both entertaining and insightful.</p><p>All of this was only possible by modifying the VCMI internals: logging, socket listening, and exporting structured state. None of it existed by default. But now that it does, I can explore even more advanced systems—maybe even reinforcement learning.</p><p>Next, I’m planning to automate longer skirmishes and evaluate which strategies win out over time. Maybe I’ll even train a custom agent using this data. Heroes 3 is no longer just nostalgic—it’s a playground for experimentation.</p></div>
+</div>
+</main>
+</div>
+</body>
+</html>

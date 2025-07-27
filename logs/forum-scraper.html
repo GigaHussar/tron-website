@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Building a Forum Scraper for Thread Archives</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="../logs/logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Building a Forum Scraper for Thread Archives</h1>
+<div class="log-date">June 2025</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-automation.html"><span>#automation</span></a><a href="../tags/tag-python.html"><span>#python</span></a></div>
+</p>
+<div class="log-content">
+<p>Over the past few weeks, I’ve been deep in the weeds of fine-tuning my own custom LLM. One idea that kept coming up: why not train it directly on real-world tech‐forum discussions? Instead of manually copying and pasting entire threads, I decided to build a scraper that could pull down each conversation automatically—archiving raw HTML or text so I could feed it into my fine‐tuning pipeline.</p>
+<p>The forum I selected maintains a simple “archive” page listing every thread by its numeric ID. My plan was straightforward: fetch that archive list, compare it against the IDs I’d already saved to disk, and then only download the threads that were missing. This way, each time I run the script, it only fetches the new discussions instead of re‐downloading everything from scratch.</p>
+<p>To make it work, I first wrote a small helper to grab the archive page and pull out every thread number. Once I had the complete set of IDs, I loaded my local index file (a plain text file with one ID per line) and computed the difference. That told me exactly which threads hadn’t been saved yet. From there, I looped over the missing IDs, constructed each thread’s URL, fetched its contents, and saved the HTML to a local “data” folder. As soon as a page finished downloading successfully, I appended its ID to my index. If any fetch returned an error (like a 404 or 503), I logged a message so I could investigate later.</p>
+<p>Because forums often throttle or block repeated requests, I chose to throttle my own scraper: between every HTTP request, I added a short delay. I also rotated a custom user‐agent string tied to my Python script to make it clear that these requests were coming from a browser rather than a DIY scraper. It slowed the overall runtime, but it prevented rate‐limit errors and kept my IP out of the black hole.</p>
+<p>Once I had each thread’s raw HTML saved locally, the next step was to extract only the useful text. The forum’s pages include headers, footers, sidebars, and signature blocks that I didn’t want in my final training data. After inspecting the HTML structure, I identified that every post’s content lived inside a specific container class. By isolating those elements, removing any quoted blocks or nested formatting, and concatenating the remaining text, I could generate a clean transcript of the original post and all its replies. Each transcript became a separate “.txt” file next to the raw HTML, ready for LLM ingestion.</p>
+<p>Putting it all together, my “scrape_forum.py” workflow now does the following:</p>
+<ol>
+<li>Download the archive page and parse out every thread ID.</li>
+<li>Read my local “threads.txt” index to see which IDs are already saved.</li>
+<li>Calculate which IDs are missing, then fetch each missing thread’s HTML and write it to disk.</li>
+<li>Convert each saved HTML file into a plaintext “.txt” transcript by stripping away non‐post elements.</li>
+<li>Log any failures for later review and append successfully saved IDs to my index file.</li>
+</ol>
+<p>Because the forum’s archive continues to grow over time, rerunning this script each day (or whenever I notice new activity) ensures my local dataset gradually fills in any gaps. In the future, I’ll automate this with a daily cron job so it runs overnight and wakes up with fresh files every morning.</p>
+<p>With hundreds or even thousands of archived tech‐forum discussions at hand, I’ll have a rich corpus of real developer conversations—everything from debugging threads to architecture debates. Feeding this live data into my fine‐tuning pipeline should help my custom LLM pick up on the nuance, slang, and detailed problem‐solving discussions that generic datasets often miss.</p>
+<p>As of now, the scraper is still evolving. I plan to add automatic retries for transient network errors, integrate proxy rotation when volume spikes, and build a lightweight logging system that emails me errors as they occur. But even in its early form, it’s already a time‐saver—no more manually copying dozens of forum pages. Instead, I let the code handle the heavy lifting, so I can focus on exploring and fine‐tuning my model rather than gathering raw data.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>

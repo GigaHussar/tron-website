@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creating a Game Bot (Part 1)</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Creating a Game Bot using PyAutoGUI, OpenCV, and Pytesseract — Part 1</h1>
+<div class="log-date">April–June 2024</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-automation.html"><span>#automation</span></a><a href="../tags/tag-python.html"><span>#python</span></a><a href="../tags/tag-pyautogui.html"><span>#pyautogui</span></a></div>
+</p>
+<div class="log-content">
+<p>When I was a kid, I used to play a MMORPG called <strong>Metin2</strong>. Like many RPGs, progression relied heavily on grinding repetitive tasks. I’d heard of hacks for the game, but my limited knowledge back then made me cautious — I didn’t want to risk viruses or getting my account stolen.</p>
+<p>Recently, I came across a YouTube video demonstrating a simple fishbot. That brought back memories and sparked the idea: what if I tried building my own?</p>
+<p>My first curiosity was: how did those old hacks even work? I learned they relied on memory manipulation and DLL injection — techniques that have become ineffective since more game logic has shifted to the server side.</p>
+<p>I decided to try something different. I found a Metin2 private server that seemed to have protections against those classic hacks. That meant fewer botters and (hopefully) less admin scrutiny.</p>
+<p>I began with simple tasks like fishing and killing monsters. First, I needed a way to automate input. While many downloadable tools exist, I wanted more control and opted for <code>pyautogui</code>.</p>
+<p>It worked fine on my browser, but not in-game. There were no errors, but nothing was happening. After some digging, I discovered the issue: DirectX input in the game. The solution? <code>pydirectinput</code>. With that, inputs started working.</p>
+<p>Next challenge: triggering input at the right moment. For attacking monsters, it was easy — just spam keys every few seconds as they respawned.</p>
+<p>Fishing was trickier. The game displayed a fish icon and a chat message showing how many times to press space (between 1–5 times). That number changed randomly.</p>
+<p>This was the fun part. I started fishing and observing. That’s when I noticed — the number of clicks was always in the same place in the chat!</p>
+<p>I took screenshots, narrowed the detection area to just that part of the screen, and used <code>pyautogui</code> to read the number (by matching exact pixels). Then, my script would press space the right number of times and cast the rod again.</p>
+<p>After fine-tuning (especially reducing the area scanned for text), the bot worked really well.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
