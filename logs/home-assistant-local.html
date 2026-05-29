@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Going Local: My Home Assistant Setup</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Going Local: My Home Assistant Setup</h1>
+<div class="log-date">January 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-network.html"><span>#network</span></a><a href="../tags/tag-smart_home.html"><span>#smart_home</span></a></div>
+</p>
+<div class="log-content">
+<p>At the start of the year I started hearing more about smart home setups. Most of it went in one ear and out the other — until I read about Google Nest losing support for older devices. That one stuck.</p>
+<p>I don't like the idea of a big tech company deciding when my hardware stops working. You buy a device, set it up, it becomes part of your home — and then someone flips a switch in a data center and it's a paperweight. That's not how I want to run things. So I started looking for something local, something I actually control.</p>
+<p>That's how I found Home Assistant. Open source, runs on your own hardware, no cloud required. The more I read, the more it made sense.</p>
+<p>I had an old Lenovo laptop with a touchscreen sitting around — the Yoga 500. My original vision was to turn it into a kind of permanent tablet: mount it somewhere, host Home Assistant on it, and control everything right from the screen. It sounded elegant. A dedicated panel, always on, always local.</p>
+<p>I installed Ubuntu on the laptop. The plan was to run HAOS — the official Home Assistant Operating System — inside a KVM virtual machine, with Ubuntu as the host. Ubuntu recognized the touchscreen immediately, no extra setup needed. The idea was that Ubuntu would open a browser pointed at the Home Assistant IP, and the touchscreen would handle the rest.</p>
+<p>The first real fight was networking. I wanted the VM to connect through Wi-Fi — seemed simple enough. It wasn't. Bridging a wireless interface with KVM is genuinely painful. After a long battle I gave up and ran an Ethernet cable instead. Suddenly everything worked. Sometimes the boring solution is the right one.</p>
+<p>One thing I did put real thought into was the battery. A laptop running 24/7 plugged in will degrade its battery fast. I configured the system to only charge the battery up to around 60%, then run purely off the power supply. The battery only charges again when it drops significantly. That way the battery stays healthy longer, and it acts as a small UPS buffer against brief blackouts.</p>
+<p>After that, setting up HAOS itself was straightforward. I installed the Home Assistant app on my phone and connected it to the local instance. It worked.</p>
+<p>In practice, I ended up using the phone app for everything. The touchscreen panel idea is still sitting in the back of my head — maybe someday, maybe a different location in the apartment. But knowing it's possible is enough for now. The important part is that everything runs locally, on hardware I own, with no subscription and no expiry date.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
