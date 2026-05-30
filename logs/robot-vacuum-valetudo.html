@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rooting Robot Vacuums: Valetudo and Local Control</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Rooting Robot Vacuums: Valetudo and Local Control</h1>
+<div class="log-date">February–April 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-network.html"><span>#network</span></a><a href="../tags/tag-smart_home.html"><span>#smart_home</span></a></div>
+</p>
+<div class="log-content">
+<p>The same thought that pushed me toward Home Assistant — that big tech shouldn't decide when your hardware stops working — came back around when I started thinking about robot vacuums.</p>
+<p>I bought a used Roborock S5. I chose it deliberately: it was popular enough that spare parts are still easy to find today, years after its release. But the more important reason was Valetudo. Valetudo is an open-source firmware replacement for robot vacuums that strips out all cloud communication and replaces it with a local-only web interface. In short: your vacuum talks to your network, not to someone's server in a data center.</p>
+<p>The rooting process for the S5 didn't require any special hardware — just a laptop running Linux and following the instructions. It went smoothly. Within an hour I had a Valetudo vacuum. I connected it to Home Assistant and suddenly I had everything: live maps, statistics, start/stop controls, and the ability to build automations around it. The kind of setup where the vacuum just does its thing without me thinking about it.</p>
+<p>For a while, that was enough. Then the age of the robot started showing. I saw a newer model in action and the difference was hard to ignore. I went back to the Valetudo site and started reading through the list of supported devices.</p>
+<p>After some searching I settled on the Eureka J15 Ultra — found one used, cheap. The rooting process here also required nothing special, just a micro-USB cable. Support for this model was newer and less established, so I was expecting friction. And it did show up: the installation files referenced a device name that didn't match what the robot actually reported about itself. Once I figured that out and corrected the name, everything ran smoothly.</p>
+<p>One quirk of the Eureka that I discovered: by default, the robot vacuums and mops simultaneously. There's no way to run just vacuuming without explicitly setting it in the app. Even if you physically remove the mop attachment, the robot throws errors instead of proceeding. That behavior, locked behind a proprietary app, is exactly why I thought it was important to install Valetudo. I'm really glad I did it.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
