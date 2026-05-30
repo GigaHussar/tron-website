@@ -3,6 +3,19 @@ import re
 from collections import defaultdict
 from bs4 import BeautifulSoup
 
+MONTHS = {
+    "january": 1, "february": 2, "march": 3, "april": 4,
+    "may": 5, "june": 6, "july": 7, "august": 8,
+    "september": 9, "october": 10, "november": 11, "december": 12,
+}
+
+def parse_date_key(date_str):
+    s = date_str.lower()
+    year_match = re.search(r'\d{4}', s)
+    year = int(year_match.group()) if year_match else 0
+    month = next((num for name, num in MONTHS.items() if name in s), 0)
+    return (year, month)
+
 # ─────────────────────────── paths ────────────────────────────────────────────
 BASE_DIR   = Path(__file__).resolve().parent
 LOGS_DIR   = BASE_DIR / "logs"               # preferred folder layout
@@ -39,7 +52,7 @@ def extract_logs():
                     "excerpt":  (soup.select_one(".log-content p") or "").text,
                 }
             )
-    return logs[::-1]       # newest → oldest
+    return sorted(logs, key=lambda l: parse_date_key(l["date"]), reverse=True)
 
 
 def generate_log_html(log, prefix: Path | str = Path()):
