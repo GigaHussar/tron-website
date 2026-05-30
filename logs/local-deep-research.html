@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Local LLMs That Can Search the Web</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Local LLMs That Can Search the Web</h1>
+<div class="log-date">May 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-ai.html"><span>#ai</span></a><a href="../tags/tag-automation.html"><span>#automation</span></a><a href="../tags/tag-web.html"><span>#web</span></a></div>
+</p>
+<div class="log-content">
+<p>There's a lot of noise about AI agents right now. I came across Open Claw — an open-source agentic framework — and thought it looked genuinely impressive. But I didn't have a clear use case for it at the moment. What I did want to try was something more specific: a local LLM generating research reports by actually searching the web. No cloud API, no data leaving the machine.</p>
+<p>I already knew I'd use Ollama or LM Studio to serve the model. The question was what to put in front of it.</p>
+<p>My first try was Open WebUI. By default it nudges you toward getting an API key from one of the supported search providers. I just wanted to test the concept quickly before committing to anything long-term, so I picked DuckDuckGo — no key required. It didn't work. Rate limited immediately. I dug into the settings and tried adding delays between requests, but the option didn't seem to do anything. Then I found a Python tool on GitHub specifically built to wrap DuckDuckGo requests with proper delays — and it could be imported as a plugin. That worked. But at some point I stepped back and thought: this is getting more complicated than it needs to be.</p>
+<p>So I looked for something else.</p>
+<p>The second tool I tried was Local Deep Research — a fairly new project. Out of the box, without any API keys or a self-hosted search engine, it's limited to a handful of websites. But that was enough to confirm the basic loop worked and felt usable. Good enough to commit to the proper setup.</p>
+<p>I followed the recommended path: SearXNG running locally in Docker. SearXNG is a self-hosted meta search engine — it queries multiple search providers simultaneously and returns the results to whatever tool is asking, without any single provider tracking your queries. The setup instructions were clear and I didn't run into any problems. Once it was running, I just pointed Local Deep Research at the local SearXNG address and everything clicked into place.</p>
+<p>For the model I'm using LM Studio with Google Gemma 4 E4B. It handles the research prompts well enough, though I plan to experiment with other models down the line.</p>
+<p>The final touch was a <code>.bat</code> script that launches all three pieces in sequence — SearXNG in Docker, LM Studio with the model loaded, and Local Deep Research — so the whole stack starts with a single double-click. It's not fancy, but it means I actually use the thing instead of having to remember the startup order every time.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
