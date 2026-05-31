@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>More Air Quality Sensors: SGP40 and the SPS30 Problem</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">More Air Quality Sensors: SGP40 and the SPS30 Problem</h1>
+<div class="log-date">March 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-smart_home.html"><span>#smart_home</span></a><a href="../tags/tag-automation.html"><span>#automation</span></a></div>
+</p>
+<div class="log-content">
+<p>After the CO2 sensor was running reliably, I wanted more data. Two more sensors made the list: an SGP40 for VOCs — volatile organic compounds — and an SPS30 for particulate matter. More things to measure. More things to worry about.</p>
+<p>The SGP40 went in without a fight. Wired it up, added it to ESPHome, and it was reporting readings within minutes. Clean setup, no surprises.</p>
+<p>The SPS30 was different.</p>
+<p>I ordered it, prepared everything — cables, config, the usual routine. Then I actually looked at the datasheet. The SPS30 needs 5V. Almost every small sensor I'd worked with runs on 3.3V, the native voltage of the ESP32. Not this one.</p>
+<p>The board I had from AliExpress had a pin labeled 5V, so I figured that was it. Wired everything up, powered it on. Nothing. The sensor wasn't responding.</p>
+<p>I started researching. After digging through documentation and dead ends, I found the answer on an electronics forum. Someone had posted about the exact board I was using — apparently, by default, that 5V pin is configured to receive power rather than supply it. To switch it into output mode, you need to bridge two small pads on the board with solder.</p>
+<p>The pads were tiny. My soldering iron was not. But I decided to try anyway.</p>
+<p>It wasn't easy. The board is small enough that it felt like surgery with a shovel. I managed to get the solder bridge in without destroying anything nearby — barely.</p>
+<p>Powered everything on again. Still nothing.</p>
+<p>At this point I was genuinely frustrated. I'd already troubleshot the hardware, done the soldering, double-checked the config. Then I went back to the physical connections and looked at every cable one by one. And there it was: two cables swapped. A simple wiring mistake. The kind that makes you feel both relieved and slightly embarrassed.</p>
+<p>Swapped them. Everything came to life immediately.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
