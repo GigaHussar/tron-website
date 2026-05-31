@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monitoring the Air Inside My 3D Printer</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Monitoring the Air Inside My 3D Printer</h1>
+<div class="log-date">April 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-smart_home.html"><span>#smart_home</span></a><a href="../tags/tag-automation.html"><span>#automation</span></a><a href="../tags/tag-3d_printing.html"><span>#3d_printing</span></a></div>
+</p>
+<div class="log-content">
+<p>Once the SGP40 and SPS30 were running in my room, a natural next question came up: what's the air like inside the printer itself? Filament heating up, fans running, plastic melting — it seemed worth knowing. And a secondary idea crept in alongside it: what if something went seriously wrong? Overheating plastic, a clog, or worse — a fire. A 3D printer running unattended in a garage feels like the right place for a smoke detector.</p>
+<p>Finding the right detector took longer than expected. Most of what's available is either battery-powered or cloud-dependent — neither of which I wanted. Batteries degrade quickly above 40–50°C, and temperatures inside a running printer regularly exceed that. Cloud dependency I avoid on principle. Eventually I found one on AliExpress that fit: a plain smoke detector running on 12V, with two signal cables coming out. No app, no subscription, no batteries. Exactly what I needed.</p>
+<p>Setting it up was a different story. The instructions from AliExpress were difficult to follow — sometimes they referenced "12C" where they clearly meant I2C, likely a translation issue, but it introduced just enough uncertainty to slow everything down. I spent most of the day second-guessing connections I should have been confident about.</p>
+<p>After a lot of doubts and backtracking, I got it working. Or at least — it's connected, it's reporting, and Home Assistant sees it. Whether it actually detects smoke is a question I haven't answered yet. Testing a smoke detector properly requires smoke, and I haven't set up a controlled way to do that without just hoping it triggers. That's still pending.</p>
+<p>The longer-term plan is to also mount the SPS30 and SGP40 inside the printer enclosure. More sensors, more data — particulate matter and VOCs from heated filament are worth tracking in their own right, not just as a safety measure. Knowing what's happening inside the printer is better than not knowing.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
