@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Building a PiKVM: KVM over IP on a Raspberry Pi 4</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Building a PiKVM: KVM over IP on a Raspberry Pi 4</h1>
+<div class="log-date">May 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-network.html"><span>#network</span></a><a href="../tags/tag-automation.html"><span>#automation</span></a></div>
+</p>
+<div class="log-content">
+<p>A KVM over IP lets you control a computer remotely at the hardware level — keyboard, video, mouse — without any software running on the target machine. Useful for headless setups, machines that refuse to boot, or just not wanting to walk to another room. PiKVM is an open-source implementation of this that runs on a Raspberry Pi.</p>
+<p>Most of the cables I already had. The one piece I needed to source specifically was a USB-C power splitter. The Raspberry Pi 4B has a single USB-C port, which normally handles power. But when the Pi is acting as a HID device — pretending to be a keyboard and mouse for the target machine — that same USB-C port needs to connect to the target. The power coming through from the target isn't enough to run the Pi on its own, so you need a splitter: one leg to a proper power adapter, one to the target machine. The PiKVM documentation listed a recommended splitter, which made that decision easy.</p>
+<p>With everything connected and the SD card flashed, I powered it on. Something felt off immediately. The Ethernet port on the Pi showed no activity lights at all. I swapped the Ethernet cable — no change. Then I looked at the power cable. The one I was using was thin, the kind that technically fits but isn't really rated for sustained current draw. I replaced it with a thicker cable and the Ethernet lights came on. That was all it needed.</p>
+<p>From there the setup went smoothly. I got into the web interface, could see the connected machine, control it — everything working. Then I noticed the video feed was slow and stuttery. Not unusable, but far from smooth.</p>
+<p>My first thought was the hardware. I had the 2GB RAM version of the Pi 4, and I wondered if that was simply too underpowered for the job. I checked CPU and RAM usage: around 25%. The Pi wasn't struggling at all. The bottleneck was somewhere else.</p>
+<p>Back in the documentation, I found a note recommending Chrome for the web interface. I had been using Firefox. I switched browsers and the feed became immediately snappy — smooth video, responsive input, no stuttering.</p>
+<p>The reason, according to the PiKVM docs, comes down to two things: which H.264 decoders the browser uses (hardware or software), and which RTP extensions it has implemented. Chrome handles both better than Firefox in this context — it uses hardware decoding and supports the RTP extensions PiKVM relies on to keep latency low. Firefox falls short on one or both, and the result shows up as a sluggish, stuttery stream. Same Pi, same network, different browser — completely different experience.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
