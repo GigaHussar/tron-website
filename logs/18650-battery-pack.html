@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Building a 1kWh Battery Pack from Used 18650 Cells</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Building a 1kWh Battery Pack from Used 18650 Cells</h1>
+<div class="log-date">March–July 2025</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-3d_printing.html"><span>#3d_printing</span></a></div>
+</p>
+<div class="log-content">
+<p>Some time ago I bought a batch of used 18650 lithium-ion cells. The plan at the time was to convert a regular bicycle into an electric one. That project never happened — for various reasons it just stalled out — and the cells ended up in a closet, largely forgotten.</p>
+<p>Every now and then I'd think about solar panels. Not seriously, more like background noise. I wasn't sure if it made financial sense, but the idea kept returning: panels on the roof, something storing the energy, powering a few things around the house. Not the washing machine or the oven — just a computer, a monitor, a TV. Small loads. The full picture I kept imagining was a controller sitting between the panels, the battery bank, and the devices: when there's sun, it powers the devices directly; excess energy charges the battery; when the sun goes down, the battery takes over; if the battery runs out, it falls back to grid power. A neat loop.</p>
+<p>The simpler version of the same idea was just using the cells as a UPS — uninterrupted power supply — for the computer and monitors. No solar involved, just a buffer between the wall and the equipment.</p>
+<p>Either way, I'd need to actually know what I had. So I bought a LiitoKala charger, which can measure real capacity on 18650 cells rather than just charging them. I started testing.</p>
+<p>More cells turned out to be unusable than I'd expected. Degraded beyond reasonable use, won't hold a charge, that sort of thing. But I still ended up with around 160 cells averaging about 1800mAh each. That's roughly 1kWh of usable capacity once they're wired into a pack. Not bad for batteries that were sitting in a closet.</p>
+<p>Testing took a long time. Each cell has to charge, discharge, and be measured individually. This phase stretched across about 100 days. It wasn't 100 days of active work — mostly I'd set up a batch, check back, record the numbers, set up another. But it added up. When I had only a handful left to test, I started reading about what else I'd need and placed some orders so the parts would arrive before I was done.</p>
+<p>I printed a battery holder for the 18650 cells on the 3D printer. One of those small things that makes assembly cleaner and keeps everything aligned.</p>
+<p>Once the full pack was assembled, I put it into an old computer case. The free space inside I filled with vermiculite — a mineral used in horticulture, but also a decent fire suppressant. Lithium cells can fail dramatically, and if something goes wrong inside the case I'd rather it didn't spread. It's not a substitute for proper battery management, but it's cheap insurance.</p>
+<p>And that's roughly where things stand. The battery pack is sitting in its case, waiting. I don't have a concrete next step yet — no solar panels, no controller, no UPS wiring done. Maybe it stays like this for a while longer. But I learned more about 18650 cells, battery testing, and thermal safety than I knew going in, and that's worth something even if the project is still technically unfinished.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
