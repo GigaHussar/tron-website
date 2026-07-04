@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Giving a Xiaomi Humidifier Local Control</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Giving a Xiaomi Humidifier Local Control</h1>
+<div class="log-date">June–July 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-smart_home.html"><span>#smart_home</span></a></div>
+</p>
+<div class="log-content">
+<p>I wanted a smart air humidifier as another addition to the smart home setup. I already had one, so there was no need to buy anything new. There was just one problem: I didn't want to rely on the cloud, or on manufacturer authorization tokens.</p>
+<p>The humidifier I have is a Xiaomi Smart Humidifier 2. Home Assistant can talk to it, but only after you extract a token from Xiaomi's cloud, and that token doesn't last — it needs to be pulled again every couple of months, and for sure after every disconnect. That's not a setup I wanted to maintain. I read online that someone had managed to flash this line of humidifiers with custom firmware that cut cloud and tokens out entirely, but unfortunately it wasn't quite my model, so that route was closed.</p>
+<p>So I went the hardware route instead. A smart plug wouldn't do it, because the humidifier doesn't turn back on by itself after a power cut. I also didn't care about the humidity readings the device itself reports — they're not accurate, and they only measure the air right around the unit anyway. What I actually needed was something that could press the physical button for me. I picked up an ESP32-C3 Supermini and a single-channel 5V relay module with optocoupler isolation, with the plan of wiring the relay across the button's pads so Home Assistant could "press" it the same way a finger would.</p>
+<p>Finding the pads near the button and getting wires soldered onto them took a lot longer than I expected, but I got there eventually. Then came the software side, which turned out to be the harder part. At some point I was stuck for long enough that I just walked away from it for about a week — no idea what was wrong, and honestly too tired to keep staring at it. Coming back with a clear head helped: it turned out the relay was active-low, and that detail was the whole problem. Adding `inverted: true` to the YAML config fixed it immediately, and everything started working.</p>
+<p>Now the humidifier turns on and off automatically based on humidity thresholds, same as any other device in the house — no tokens, no cloud, nothing to re-authorize every few months.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
