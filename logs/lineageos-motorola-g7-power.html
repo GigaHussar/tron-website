@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Installing LineageOS on an Old Motorola G7 Power</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Installing LineageOS on an Old Motorola G7 Power</h1>
+<div class="log-date">August 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a></div>
+</p>
+<div class="log-content">
+<p>Today I finished installing LineageOS on my old phone. The idea to try a non-Android OS came to me on two separate occasions, and this time it finally stuck.</p>
+<p>The first time was when I thought about turning an old smartphone into a little always-on server. That idea immediately ran into a problem in my head: phone batteries are wired differently from laptop batteries, and if I wanted to run one 24/7, I'd want to rip the battery out and replace it with a capacitor so it wouldn't eventually swell up or worse. That felt like a lot of extra work for something that wasn't very important at the time, so I let it go.</p>
+<p>Later I read about GrapheneOS and thought I might eventually put it on a Google phone. But before doing that on hardware I actually cared about, I wanted to get familiar with the whole process of flashing a custom OS onto a phone — how difficult it really is, what it looks like step by step. My old Motorola G7 Power turned out to be supported by LineageOS, so it became the practice run before the "big day" with a newer phone.</p>
+<p>First surprise: after a factory reset, the phone asked for the old unlock code before letting me into settings. Not a huge deal, but a little unsettling since this phone had circulated through my family and I had no idea who used it last or what code they'd set. After some digging through memory I got it, got back into settings, and enabled ADB debugging.</p>
+<p>From there I installed platform tools on my PC and connected the phone, then followed the instructions on the LineageOS site. I was extra cautious the whole way through — I'd read that it's possible to brick a device if you mess up a step, so I read everything twice before touching anything. I also had to install a Motorola driver on the PC and create a Motorola account just to unlock the bootloader; everything else came straight from the LineageOS site.</p>
+<p>In the end I got a basic install working, without Google apps. Might go back and add something later, but for now I'm just glad to have gone through the process once on a phone I don't mind experimenting with.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
