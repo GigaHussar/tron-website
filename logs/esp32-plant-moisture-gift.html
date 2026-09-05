@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>An ESP32 Plant Moisture Display, Built as a Birthday Gift</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">An ESP32 Plant Moisture Display, Built as a Birthday Gift</h1>
+<div class="log-date">September 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-hardware.html"><span>#hardware</span></a><a href="../tags/tag-smart_home.html"><span>#smart_home</span></a></div>
+</p>
+<div class="log-content">
+<p>I wanted to make a birthday gift for someone just getting into home automation. Instead of buying something, I decided to build a small standalone device: an ESP32-C3 with a built-in OLED display, so it could show useful data on screen even without being connected to Home Assistant. I had a spare capacitive soil moisture sensor lying around, so the idea came together quickly — a little screen that shows the moisture level of a plant sitting in its pot, no hub or app required.</p>
+<p>I hadn't worked with an ESP32 with a built-in screen before, so the first question was which pins the display was actually wired to. I asked an AI chat for a guess, then wrote a small script to run on the ESP32 to confirm it directly rather than trust the guess blindly. The guess turned out to be correct. Writing the first draft of the actual program was quick after that.</p>
+<p>Then I soldered on the header pins and ran the program, and immediately hit a problem: the reading stayed exactly the same whether the sensor was dry in the air or dipped in water. My first suspicion was the soldering itself — I'd noticed while working that the traces around the ground pin pad were very thin. I wasn't confident my soldering iron, which is on the larger side, could land a clean joint there. I checked continuity with a multimeter anyway, and everything measured fine.</p>
+<p>After some more thinking and back-and-forth with the AI chat, I decided to check voltage instead of continuity. Between the ground pin and 3.3V it read close to 0V and between the ground pin and 5V it read about 1.2V instead of a full 5V. When I used the USB-C connector's outer shell as the ground reference instead of the ground pin, the readings came out correct. That pointed straight at a bad ground connection on the board itself, not the sensor or the code.</p>
+<p>I tried resoldering the ground pin, but the second attempt came out worse than the first. Since the gift needed to be finished the same day, I improvised: I'd solder the ground wire directly to the USB-C shell instead of the pad. I roughed up the shell's surface with 500 grit sanding paper, cleaned it with isopropyl alcohol, then soldered the wire on. It went smoother than expected and the joint held strong.</p>
+<p>With the hardware finally behaving, I moved on to calibration — dipping the sensor in water and holding it in open air to get real min and max readings, then feeding those into the program so the percentage on screen actually meant something. I also cleaned up the display code to make the numbers easier to read at a glance. Last step was tidying the wiring inside the case so nothing was dangling loose, and that was it — ready to hand over.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
