@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Getting a Cheap Dual-Extruder Industrial 3D Printer Running Right</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="hud-frame">
+<nav class="nav-panel">
+<a class="nav-item" href="../about.html">About Me</a>
+<a class="nav-item" href="../now.html">Now</a>
+<a class="nav-item" href="../gear.html">Gear</a>
+<a class="nav-item" href="../ideas.html">Ideas</a>
+<a class="nav-item" href="../tags.html">Tags</a>
+<a class="nav-item" href="logs.html">Logs</a>
+</nav>
+<main class="main-content">
+<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+<h1 class="site-title">Getting a Cheap Dual-Extruder Industrial 3D Printer Running Right</h1>
+<div class="log-date">April–August 2026</div>
+<p style="margin: 10px 0;">
+<div class="log-tags"><a href="../tags/tag-3d_printing.html"><span>#3d_printing</span></a><a href="../tags/tag-hardware.html"><span>#hardware</span></a></div>
+</p>
+<div class="log-content">
+<p>I was browsing an online marketplace for printer deals, mostly out of habit. I know most of the models people try to sell secondhand, and usually none of them interest me. This time one listing stood out, especially at the price being asked, so I bought it for 800zł.</p>
+<p>Once it arrived, it was clear why it felt like a deal: this thing is built like an industrial machine. Metal frame, dual all-metal hotends, ball screws on the Z axis instead of the usual threaded rods, and aluminum carriages riding on all axes. It even has a proper filament runout sensor — one that actually detects filament moving through it, not just a microswitch that only checks whether filament is present at all.</p>
+<p>The software side was a different story. It ran some Marlin-style firmware with a bunch of custom commands layered on top, paired with its own dedicated slicer. I ditched that slicer almost immediately in favor of Orca Slicer. Porting the print settings over took a bit of time, but it was worth it for the extra control Orca gives me over the print process.</p>
+<p>The seller mentioned they had only ever printed using one of the two nozzles, so I had no idea if the second one even worked. First thing I noticed when I looked closer was that the small metal part meant to physically plug the idle nozzle was bent out of shape. Easy fix — I just bent it back into the correct position.</p>
+<p>Getting prints onto the machine turned into its own small saga. I first tried printing over USB using Repetier Host on my PC, with a 3 meter cable, and it failed. I tried again with a 1.5 meter cable and got noticeably better results — shorter USB cables suffer less signal degradation, which matters a lot when you're streaming gcode over a live serial connection instead of reading it off local storage. But cable length wasn't the real problem. The printer handled USB printing strangely: it ignored the tool offsets and Z offset saved on the printer itself, applying different values instead. I tried to correct it by editing the gcode directly, and the printer responded by halting the print entirely, apparently convinced it was about to crash the nozzle into the bed. I gave up on USB printing and bought an SD card to print from instead, only to find the mechanism that holds the card in its slot doesn't grip properly. I might end up buying a small device to connect there and send prints directly over network instead of fighting the SD slot.</p>
+<p>Somewhere in the middle of all this the nozzle got blocked. The first layer was printing too close to the bed, most likely because the bed wasn't correctly leveled. I tried running the printer's auto bed leveling to fix it properly, but that routine kept throwing errors partway through. In the end I just increased the Z offset manually in the printer's settings, which cleared the problem without needing the auto calibration to cooperate.</p>
+<p>Between the slicer swap, the bent nozzle plug, the USB troubles, and the offset fiddling, it took a while before this printer felt properly dialed in. But for 800zł and this build quality, I can't really complain about the learning curve.</p>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
